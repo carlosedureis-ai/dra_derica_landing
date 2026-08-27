@@ -185,6 +185,15 @@ p {
     flex-direction: column;
 }
 
+/* hero-stage: invisible passthrough on desktop, real container on mobile */
+.hero-stage {
+    position: static;
+    width: 0;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
 /* Nav Header */
 .hero-nav {
     position: absolute;
@@ -1074,39 +1083,55 @@ p {
         width: 100%;
         justify-content: center;
     }
+    /* ── Hero mobile ── */
     .hero-new {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
-        align-content: start;
+        position: relative;
+        display: flex;
+        flex-direction: column;
         height: auto;
         min-height: 100vh;
         min-height: 100svh;
-        padding-top: 90px;
-        padding-bottom: 24px;
-        overflow-x: hidden;
+        overflow: hidden;
+        padding-bottom: 0;
     }
+
+    /* Nav: logo + botão CTA visível no topo */
     .hero-nav {
-        padding: 24px 5%;
-        position: absolute;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        z-index: 30;
     }
     .nav-links { display: none; }
-    
-    .hero-display-word {
-        grid-area: 1 / 1 / 2 / 2;
+    .nav-action { display: flex; }
+
+    /* Área central: REALCE + foto sobrepostos */
+    .hero-stage {
         position: relative;
-        inset: auto;
-        bottom: auto;
+        width: 100%;
+        flex: 1 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        min-height: 55vw;
+    }
+
+    .hero-display-word {
+        position: absolute;
+        inset: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 14vw;
-        letter-spacing: 0.04em;
-        width: 100%;
-        margin-top: 1rem;
+        font-size: 22vw;
+        letter-spacing: 0.02em;
         z-index: 5;
-        opacity: 0.65;
+        opacity: 0.6;
+        margin: 0;
         overflow: visible;
+        white-space: nowrap;
     }
 
     .hero-display-word span {
@@ -1115,28 +1140,24 @@ p {
     }
 
     .hero-center-photo {
-        grid-area: 1 / 1 / 2 / 2;
         position: relative;
+        z-index: 10;
+        width: 70%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
         inset: auto;
         transform: none;
-        width: 82%;
-        max-width: 320px;
-        margin: 0 auto;
-        margin-top: 5rem;
-        z-index: 10;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
     }
-    
+
     .hero-center-photo::after {
         content: "";
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 12%;
-        background: linear-gradient(to bottom, rgba(250, 247, 243, 0) 0%, rgba(245, 239, 233, 0.8) 50%, rgba(245, 239, 233, 1) 100%);
+        height: 18%;
+        background: linear-gradient(to bottom, rgba(245,239,233,0) 0%, rgba(245,239,233,1) 100%);
         pointer-events: none;
         z-index: 12;
     }
@@ -1147,42 +1168,91 @@ p {
         width: 100%;
         height: auto;
         display: block;
+        object-fit: contain;
     }
 
+    /* Conteúdo esquerdo: texto + CTA */
     .hero-content-left {
-        grid-row: 2;
         position: relative;
         inset: auto;
-        padding: 0 5%;
-        margin-top: 1rem;
-        margin-bottom: 2rem;
+        z-index: 20;
+        padding: 1.5rem 5% 0;
         max-width: 100%;
-        text-align: center;
-        z-index: 15;
+        text-align: left;
     }
-    
+
+    .hero-content-left h1 {
+        font-size: 1.15rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .hero-content-left p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        line-height: 1.45;
+    }
+
+    /* Credenciais à direita — vira linha fina abaixo do CTA */
     .hero-content-right {
-        grid-row: 3;
         position: relative;
         inset: auto;
-        padding: 2rem 5%;
+        z-index: 20;
+        padding: 1rem 5%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
-        text-align: center;
-        z-index: 15;
+        gap: 0.3rem 1.2rem;
+        text-align: left;
     }
-    
+
+    .hero-content-right .line-info {
+        font-size: 0.6rem;
+        letter-spacing: 0.09em;
+    }
+
+    .hero-content-right .line-separator {
+        display: none;
+    }
+
+    /* Painel inferior — grade 2×2 compacta */
     .hero-bottom-panel {
-        grid-row: 4;
         position: relative;
         inset: auto;
-        margin: 0 5%;
+        margin: 1rem 4%;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem;
+        gap: 1px;
+        padding: 1.2rem 1rem;
+        border-radius: 14px;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 20;
     }
+
+    .panel-separator { display: none; }
+
     .panel-item {
-        gap: 0.4rem;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.6rem;
+        padding: 0.6rem 0.4rem;
+        text-align: left;
+    }
+
+    .panel-item svg {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+    .panel-text strong {
+        font-size: 0.65rem;
+    }
+
+    .panel-text span {
+        font-size: 0.7rem;
     }
     .about-editorial {
         padding: 6rem 5% 4rem;
