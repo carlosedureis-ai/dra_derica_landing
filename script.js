@@ -34,17 +34,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (!prefersReducedMotion) {
         const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
         
-        // Configura o estado inicial do clip-path para as revelações verticais
+        // Configura o estado inicial do clip-path para a palavra
         gsap.set(".hero-display-word", { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 30 });
-        gsap.set(".hero-center-photo img", { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 20 });
         gsap.set(".panel-separator, .panel-item svg", { opacity: 0 });
 
-        heroTl.from(".hero-nav", { y: -20, opacity: 0, duration: 0.6 })
+        heroTl.fromTo(".hero-nav", { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
               .to(".hero-display-word", { clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)", y: 0, opacity: 0.72, duration: 0.8 }, "-=0.2")
-              .to(".hero-center-photo img", { clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)", y: 0, opacity: 1, duration: 0.8 }, "-=0.6")
-              .from(".hero-content-left", { x: -25, opacity: 0, duration: 0.7 }, "-=0.5")
-              .from(".hero-content-right", { x: 25, opacity: 0, duration: 0.7 }, "-=0.7")
-              .from(".hero-bottom-panel", { y: 30, opacity: 0, duration: 0.7 }, "-=0.5")
+              .fromTo(".hero-center-photo", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.6")
+              .fromTo(".hero-content-left", { x: -25, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7 }, "-=0.5")
+              .fromTo(".hero-content-right", { x: 25, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7 }, "-=0.7")
+              .fromTo(".hero-bottom-panel", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.5")
               .to(".panel-separator, .panel-item svg", { opacity: 1, duration: 0.5, stagger: 0.1 }, "-=0.3");
     } else {
         // Fallback no-JS/Reduced Motion
