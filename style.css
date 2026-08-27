@@ -467,11 +467,13 @@ p {
 .about-layout {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
     align-items: center;
     position: relative;
     z-index: 5;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* Left Column */

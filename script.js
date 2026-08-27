@@ -65,7 +65,6 @@
         });
         
         aboutTl.fromTo(".about-left", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" })
-               .fromTo(".about-center", { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "power2.out" }, "-=0.6")
                .fromTo(".about-right", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, "-=0.4")
                .fromTo(".about-meta", { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.1 }, "-=0.8");
     } else {
@@ -134,5 +133,6 @@
         }
     });
 });
+
 
 
