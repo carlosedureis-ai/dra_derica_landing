@@ -1080,6 +1080,7 @@ p {
         grid-template-rows: auto auto auto auto;
         align-content: start;
         height: auto;
+        min-height: 100vh;
         min-height: 100svh;
         padding-top: 90px;
         padding-bottom: 24px;
@@ -1118,6 +1119,11 @@ p {
         display: flex;
         justify-content: center;
         align-items: flex-end;
+    }
+    
+    .hero-center-photo img {
+        mask-image: none !important;
+        -webkit-mask-image: none !important;
     }
 
     .hero-content-left {
