@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+﻿document.addEventListener("DOMContentLoaded", (event) => {
     // Register ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
@@ -75,17 +75,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
     }
 
-    // 3. Animação da Seção Procedimentos Bento
+    // 3. Animação da Seção Procedimentos (Bento)
     if (!prefersReducedMotion) {
         const procTl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".procedures-bento",
-                start: "top 70%",
+                start: "top 60%",
                 toggleActions: "play none none reverse"
             }
         });
 
-        procTl.to(".procedures-header .procedures-animated", { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" })
+        procTl.to(".procedures-title, .procedures-intro", { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" })
               .to(".procedure-card--feature", { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, "-=0.3")
               .to(".procedure-card--micro, .procedure-card--harmony", { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }, "-=0.4")
               .to(".procedure-card--individual", { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }, "-=0.3");
@@ -99,9 +99,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // 4. Fade Up Genérico on Scroll
     const fadeUpElements = gsap.utils.toArray(".gsap-fade-up");
     fadeUpElements.forEach((el) => {
-        gsap.from(el, {
-            y: 40,
-            opacity: 0,
+        gsap.to(el, { y: 0, opacity: 1,
             duration: 0.8,
             ease: "power3.out",
             scrollTrigger: {
@@ -113,9 +111,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
     // 4. Stagger Animations (Pillars)
-    gsap.from(".gsap-stagger", {
-        y: 30,
-        opacity: 0,
+    gsap.to(".gsap-stagger", { y: 0, opacity: 1,
         duration: 0.6,
         stagger: 0.15,
         ease: "power2.out",
@@ -127,9 +123,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
     // 5. Slide In Animations (Differentials)
-    gsap.from(".gsap-slide-in", {
-        x: -30,
-        opacity: 0,
+    gsap.to(".gsap-slide-in", { x: 0, opacity: 1,
         duration: 0.6,
         stagger: 0.15,
         ease: "power2.out",
@@ -140,3 +134,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 });
+
+
