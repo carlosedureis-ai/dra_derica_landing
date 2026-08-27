@@ -1100,10 +1100,11 @@ p {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 21vw;
-        letter-spacing: normal;
+        font-size: 30vw;
+        letter-spacing: -0.03em;
         margin-top: 1rem;
         z-index: 5;
+        opacity: 0.65;
     }
 
     .hero-center-photo {
