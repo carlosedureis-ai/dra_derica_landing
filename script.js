@@ -43,8 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ".hero-word",
             ".hero-portrait",
             ".hero-intro",
-            ".hero-details",
-            ".proof-strip"
+            ".hero-details"
         ]);
 
         [".about", ".procedures", ".approach", ".credentials", ".final-cta"].forEach((section) => {
@@ -65,9 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 0.08)
         .from(".hero-portrait", { autoAlpha: 0, y: 32, duration: 0.8 }, 0.22)
         .from(".hero-intro", { autoAlpha: 0, x: -22, duration: 0.55 }, 0.42)
-        .from(".hero-details", { autoAlpha: 0, x: 22, duration: 0.55 }, 0.47)
-        .from(".proof-strip", { autoAlpha: 0, y: 18, duration: 0.6 }, 0.55)
-        .from(".proof-strip article", { autoAlpha: 0, y: 10, duration: 0.35, stagger: 0.05 }, 0.68);
+        .from(".hero-details", { autoAlpha: 0, x: 22, duration: 0.55 }, 0.47);
 
     gsap.to(".hero-word", {
         yPercent: -5,
