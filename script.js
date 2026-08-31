@@ -52,40 +52,39 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    document.documentElement.classList.add("portal-motion");
+
     const heroTimeline = gsap.timeline({ defaults: { ease: easeOut } });
     heroTimeline
         .from(".site-header", { autoAlpha: 0, y: -14, duration: 0.45 })
         .from(".hero-word", {
             autoAlpha: 0,
-            y: 24,
-            clipPath: "inset(0 0 100% 0)",
-            duration: 0.85,
-            ease: easeInOut
+            y: 18,
+            duration: 0.65
         }, 0.08)
-        .from(".hero-portrait", { autoAlpha: 0, y: 32, duration: 0.8 }, 0.22)
         .from(".hero-intro", { autoAlpha: 0, x: -22, duration: 0.55 }, 0.42)
         .from(".hero-details", { autoAlpha: 0, x: 22, duration: 0.55 }, 0.47);
 
-    gsap.to(".hero-word", {
-        yPercent: -5,
-        ease: "none",
+    gsap.set(".hero-portrait", { scale: 1.08 });
+    const portalTimeline = gsap.timeline({
         scrollTrigger: {
-            trigger: ".hero",
+            trigger: ".hero--portal",
             start: "top top",
-            end: "bottom top",
-            scrub: 0.6
+            end: "bottom bottom",
+            scrub: 0.65,
+            invalidateOnRefresh: true
         }
     });
-    gsap.to(".hero-portrait", {
-        yPercent: 3,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.6
-        }
-    });
+    portalTimeline
+        .to(".portal-panel--left", { xPercent: -108, ease: "none" }, 0)
+        .to(".portal-panel--right", { xPercent: 108, ease: "none" }, 0)
+        .to(".portal-wash", { autoAlpha: 0.24, ease: "none" }, 0)
+        .to(".hero-portrait", { scale: 1, yPercent: 4, ease: "none" }, 0)
+        .to(".hero-word", { scale: 1.08, letterSpacing: "-0.075em", ease: "none" }, 0)
+        .to(".hero-word__left", { xPercent: -62, ease: "none" }, 0)
+        .to(".hero-word__right", { xPercent: 62, ease: "none" }, 0)
+        .to(".portal-dots span:first-child", { x: "-42vw", y: "-28vh", ease: "none" }, 0)
+        .to(".portal-dots span:last-child", { x: "42vw", y: "28vh", ease: "none" }, 0);
 
     const aboutTimeline = gsap.timeline({
         scrollTrigger: { trigger: ".about", start: "top 80%", once: true }
